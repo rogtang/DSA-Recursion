@@ -1,0 +1,48 @@
+class memory {
+    constructor() {
+      this.memory = new Float64Array(1024);
+      this.head = 0;
+    }
+  
+    allocate(size) {
+      if (this.head + size > this.memory.length) {
+        return null;
+      }
+  
+      let start = this.head;
+  
+      this.head += size;
+      return start;
+    }
+  //ptr = pointer
+    free(ptr) {}
+  
+    copy(toIdx, fromIdx, size) {
+        //i.e. copy(10, 0, 3) = copy 3 boxes starting from the 0 pointer(index) and place it in the 10 pointer(index)
+      if (fromIdx === toIdx) {
+        return;
+      }
+  
+      if (fromIdx > toIdx) {
+        // Iterate forwards
+        for (let i = 0; i < size; i++) {
+          this.set(toIdx + i, this.get(fromIdx + i));
+        }
+      } else {
+        // Iterate backwards
+        for (let i = size - 1; i >= 0; i--) {
+          this.set(toIdx + i, this.get(fromIdx + i));
+        }
+      }
+    }
+  
+    get(ptr) {
+      return this.memory[ptr];
+    }
+  
+    set(ptr, value) {
+      this.memory[ptr] = value;
+    }
+  }
+  
+  module.exports = memory;
