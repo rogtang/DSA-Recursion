@@ -114,24 +114,6 @@ urlifyString('roger tang');
 
 
 
-/*
-### 2. Filtering an array
-Imagine you have an array of numbers. Write an algorithm to remove all numbers 
-less than five from the array. 
-Don't use array's built-in `.filter` method here; write the algorithm from scratch.
-Input: [10,4,5,8,2,9];
-Output: [10,5,8,9]
-*/
-
-function filterArray(numArray) {
-  let newArray = [];
-  for (let i=0; i<numArray.length; i++) {
-    if (numArray[i] >= 5) {
-      newArray.push(numArray[i])
-    }
-  return newArray
-  }
-
 
 /*
 ### 2. Filtering an array
