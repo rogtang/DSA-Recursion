@@ -141,17 +141,22 @@ Write an algorithm which will find the largest sum in a continuous sequence.
 Input: [4,6,-3,5,-2,1]
 Output: 12
 */
-let maxSubarray = function(arr) {
-    let maxEndingHere = 0;
-    let maxSoFar = 0;
-    for (let i=0; i<arr.length; i++) {
-        let item = arr[i];
-        maxEndingHere = Math.max(0, maxEndingHere + item);
-        maxSoFar = Math.max(maxSoFar, maxEndingHere);
-        //console.log(item, maxEndingHere, maxSoFar);
+function largestSum(arr){
+    let currentSum = 0;
+    let oldSum = 0;
+    let highest
+    for (let i=0;i<arr.length; i++){
+      currentSum+= arr[i]
+      if (currentSum > oldSum) {
+        highest = currentSum
+        oldSum = currentSum;
+      }
     }
-    return maxSoFar;
-};
+    return highest
+  }
+  
+  let input = [4, 6, -3, 5, -2, 1];
+  console.log(largestSum(input))
 
 /*
 ### 4. Merge Arrays

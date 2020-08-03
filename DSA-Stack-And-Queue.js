@@ -512,6 +512,7 @@ function squareDance(){
     SquareDanceQueue.enqueue('F Beyonce')
   
     while (SquareDanceQueue.first){
+        //if WaitingQueue is not empty and match M/F value in [0] index position, then dequeue one person from each queue
       if (WaitingQueue.first !== null &&
         (SquareDanceQueue.first.value[0]
           !== WaitingQueue.first.value[0])){
@@ -519,6 +520,7 @@ function squareDance(){
                 let second = WaitingQueue.dequeue()
                 dancers.push([first, second])
       } else {
+          //move the person into the WaitingQueue
            let first = SquareDanceQueue.dequeue()
            WaitingQueue.enqueue(first)
     } } console.log(dancers)

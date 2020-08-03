@@ -258,14 +258,14 @@ function reverse(lst) {
     let current = lst.head;
    
     while(current !== null) {
-      // assign the next node to savedNode for safe keeping
+      // assign the next node to savedNode for safe keeping (otherwise we lose access to current.next when we change pointer direction)
       let savedNode = current.next;
       // Reassigns current's pointer to the new list we are making
       // reversedPart starts as null, but slowly grows as things are
       // pushed onto the new list
       current.next = reversedPart;
       reversedPart = current;
-      // update the counter that is traveling through the array
+      // point current to the savedNode to access current.next so we can continue iterating through list
       current = savedNode;
     }
     // update the head so we have access to the linked list
@@ -378,7 +378,9 @@ function hasCycle (lst) {
    
 /*
 Sorting a list
-Write an algorithm that will sort a given linked list. For example given a list such as 3->2->5->7->1, your program will output the sorted version of this list which will be 1->2->3->5->7. You may not use another list or any other data structure such as an array to store the data.
+Write an algorithm that will sort a given linked list. For example given a list such as 3->2->5->7->1, your
+ program will output the sorted version of this list which will be 1->2->3->5->7. You may not
+  use another list or any other data structure such as an array to store the data.
 */
 
 function sortList(linkedList){
@@ -389,11 +391,16 @@ function sortList(linkedList){
 
     let currentHead = linkedList.head  
     while (currentHead !== null){
+      //currentNode = the value next to the currentHead
       let currentNode = currentHead.next
         while (currentNode !== null){
+          //if value on left is greater
           if (currentHead.value > currentNode.value){
+            //store array index position for value on left
             let temp = currentHead.value
+            //change the index for the value on the left (the greater one) to the index for the right (i.e. swap the two)
             currentHead.value = currentNode.value
+            //then set the value that was on the right (the lesser one) to the left index position that we stored as temp
             currentNode.value = temp
           } 
           currentNode = currentNode.next
